@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Server;
+use App\Http\Controllers\API\V1\AdminController;
 use App\Http\Controllers\API\V1\ServerController;
 
 use Illuminate\Http\Request;
@@ -19,9 +20,14 @@ use Illuminate\Support\Facades\Route;
 
 // MARK: Admin
 
-Route::get('/admin/{id}', function (Request $request, $id) {
-    return 'should get admn with id '.$id;
-});
+Route::get('/admins', [AdminController::class, 'all']);
+
+Route::post('/admin', [AdminController::class, 'add']);
+
+Route::delete('/admin/delete', [AdminController::class, 'delete']);
+
+Route::get('/admin/{id}', [AdminController::class, 'get']);
+
 
 // MARK: Admin Group
 
@@ -77,4 +83,8 @@ Route::get('/servergroups', function (Request $request) {
 
 Route::get('/servergroup/${id}', function (Request $request) {
    return 'should get server group with id '.$id; 
+});
+
+Route::post('/servergroup', function (Request $request) {
+    return 'should add a server group';
 });

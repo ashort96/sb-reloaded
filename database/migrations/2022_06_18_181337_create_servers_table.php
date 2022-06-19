@@ -14,10 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('servers', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('name');
             $table->string('ip');
             $table->string('port');
+            $table->string('rcon_pw');
             $table->timestamps();
         });
     }

@@ -15,5 +15,9 @@ class Server extends Model
         'port',
     ];
 
+    protected $hidden = [
+        'rcon_pw'
+    ];
+
     protected $connection = 'mysql';
 }

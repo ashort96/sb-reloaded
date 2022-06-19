@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Server;
+use App\Models\Admin;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ServersTableSeeder extends Seeder
+class AdminTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,15 +15,14 @@ class ServersTableSeeder extends Seeder
      */
     public function run()
     {
-        Server::truncate();
+        Admin::truncate();
 
         $faker = \Faker\Factory::create();
 
         for ($i = 0; $i < 5; $i++) {
-            Server::create([
-                'name' => $faker->city,
-                'ip' => '1.2.3.'.$i,
-                'port' => '27015'
+            Admin::create([
+                'steamid' => 'STEAM_0:0:0',
+                'name' => $faker->name,
             ]);
         }
         //
