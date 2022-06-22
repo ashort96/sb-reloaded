@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('ip');
             $table->string('port');
             $table->string('rcon_pw');
+            $table->integer('server_group_id')->unsigned();
+            $table->foreign('server_group_id')->references('id')->on('server_groups');
             $table->timestamps();
         });
     }

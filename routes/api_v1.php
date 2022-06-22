@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Server;
+use App\Models\ServerGroup;
 use App\Http\Controllers\API\V1\AdminController;
 use App\Http\Controllers\API\V1\ServerController;
 
@@ -24,7 +25,7 @@ Route::get('/admins', [AdminController::class, 'all']);
 
 Route::post('/admin', [AdminController::class, 'add']);
 
-Route::delete('/admin/delete', [AdminController::class, 'delete']);
+Route::delete('/admin/{id}', [AdminController::class, 'delete']);
 
 Route::get('/admin/{id}', [AdminController::class, 'get']);
 
@@ -45,7 +46,7 @@ Route::get('/bans', function (Request $request) {
     return 'should get all bans';
 });
 
-Route::delete('/ban', function (Request $request, $id) {
+Route::delete('/ban{id}', function (Request $request, $id) {
     return 'should delete a ban with id '.$id;
 });
 
@@ -78,11 +79,14 @@ Route::get('/server/{id}/admins', function (Request $request, $id) {
 // MARK: Server Group
 
 Route::get('/servergroups', function (Request $request) {
-    return 'should get all server groups';
+    return ServerGroup::all();
 });
 
-Route::get('/servergroup/${id}', function (Request $request) {
-   return 'should get server group with id '.$id; 
+Route::get('/servergroup/{id}', function (Request $request, $id) {
+    $servers = ServerGroup::find($id)->servers;
+
+    return response()->json($servers, 200);
+   //return 'should get server group with id '.$id; 
 });
 
 Route::post('/servergroup', function (Request $request) {

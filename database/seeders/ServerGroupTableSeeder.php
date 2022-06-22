@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Server;
+use App\Models\ServerGroup;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ServerTableSeeder extends Seeder
+class ServerGroupTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,17 +15,10 @@ class ServerTableSeeder extends Seeder
      */
     public function run()
     {
-
         $faker = \Faker\Factory::create();
 
         for ($i = 0; $i < 5; $i++) {
-            Server::create([
-                'name' => $faker->city,
-                'ip' => '1.2.3.'.$i,
-                'port' => '27015',
-                'rcon_pw' => '12345',
-                'server_group_id' => ($i % 2) + 1
-            ]);
+            ServerGroup::create();
         }
         //
     }
