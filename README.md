@@ -3,7 +3,7 @@
 An attempt at partially recreating [SourceBans++](https://github.com/sbpp/sourcebans-pp/) using Laravel as the backend framework. 
 
 ## Requirements:
-- PHP 7.4
+- PHP 8.1
 - MySQL 8.0
 
 ## Running locally:
