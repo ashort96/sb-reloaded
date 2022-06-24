@@ -2,8 +2,11 @@
 
 use App\Models\Server;
 use App\Models\ServerGroup;
-use App\Http\Controllers\API\V1\AdminController;
-use App\Http\Controllers\API\V1\ServerController;
+use App\Http\Controllers\API\V1\AdminGroupsController;
+use App\Http\Controllers\API\V1\AdminsController;
+use App\Http\Controllers\API\V1\BansController;
+use App\Http\Controllers\API\V1\ServerGroupsController;
+use App\Http\Controllers\API\V1\ServersController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,60 +24,46 @@ use Illuminate\Support\Facades\Route;
 
 // MARK: Admin
 
-Route::get('/admins', [AdminController::class, 'all']);
+Route::get('/admins', [AdminsController::class, 'all']);
 
-Route::post('/admin', [AdminController::class, 'add']);
+Route::post('/admins', [AdminsController::class, 'add']);
 
-Route::delete('/admin/{id}', [AdminController::class, 'delete']);
+Route::delete('/admins/{id}', [AdminsController::class, 'delete']);
 
-Route::get('/admin/{id}', [AdminController::class, 'get']);
+Route::get('/admins/{id}', [AdminsController::class, 'get']);
 
 
 // MARK: Admin Group
 
-Route::get('/admingroups', function (Request $request) {
-    return 'should get all admingroups';
-});
+Route::get('/admingroups', [AdminGroupsController::class, 'all']);
 
-Route::get('/admingroup/{id}', function (Request $request, $id) {
-    return 'should get admingroup with id '.$id;
-});
+Route::get('/admingroup/{id}', [AdminGroupsController::class, 'get']);
 
 // MARK: Ban
 
-Route::get('/bans', function (Request $request) {
-    return 'should get all bans';
+Route::get('/bans', [BansController::class, 'all']);
+
+Route::patch('/bans/{id}', function (Request $request) {
+    return 'should patch a ban: ';
 });
 
-Route::delete('/ban{id}', function (Request $request, $id) {
-    return 'should delete a ban with id '.$id;
-});
+Route::post('/bans', [BansController::class, 'all']);
 
-Route::patch('/ban', function (Request $request) {
-    return 'should patch a ban: '.$request->getContent();
-});
+Route::delete('/bans/{id}', [BaseController::class, 'delete']);
 
-Route::post('/ban', function (Request $request) {
-    return 'should post a new ban';
-});
-
-Route::get('/ban/{id}', function (Request $request, $id) {
-    return 'should get ban with id '.$id;
-});
+Route::get('/bans/{id}', [BansController::class, 'get']);
 
 // MARK: Server
 
-Route::get('/servers', [ServerController::class, 'all']);
+Route::get('/servers', [ServersController::class, 'all']);
 
-Route::get('/server/{id}', [ServerController::class, 'get']);
+Route::get('/servers/{id}', [ServersController::class, 'get']);
 
-Route::post('/server/add', [ServerController::class, 'add']);
+Route::post('/servers', [ServersController::class, 'add']);
 
-Route::delete('/server/{id}', [ServerController::class, 'delete']);
+Route::delete('/servers/{id}', [ServersController::class, 'delete']);
 
-Route::get('/server/{id}/admins', function (Request $request, $id) {
-    return 'should get all admins for server '.$id;
-});
+Route::get('/servers/{id}/admins', [ServersController::class, 'getAdmins']);
 
 // MARK: Server Group
 
@@ -82,13 +71,12 @@ Route::get('/servergroups', function (Request $request) {
     return ServerGroup::all();
 });
 
-Route::get('/servergroup/{id}', function (Request $request, $id) {
+Route::get('/servergroups/{id}', function (Request $request, $id) {
     $servers = ServerGroup::find($id)->servers;
 
     return response()->json($servers, 200);
-   //return 'should get server group with id '.$id; 
 });
 
-Route::post('/servergroup', function (Request $request) {
+Route::post('/servergroups', function (Request $request) {
     return 'should add a server group';
 });

@@ -19,5 +19,7 @@ class Server extends Model
         'rcon_pw'
     ];
 
-    protected $connection = 'mysql';
+    public function admins() {
+        return $this->hasMany('App\Models\Admin');
+    }
 }

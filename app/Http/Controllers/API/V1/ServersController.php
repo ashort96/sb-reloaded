@@ -6,7 +6,7 @@ use App\Models\Server;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ServerController extends Controller
+class ServersController extends Controller
 {
 
     public function add(Request $request) {
@@ -24,6 +24,11 @@ class ServerController extends Controller
 
     public function get(Request $request, $id) {
         return Server::findOrFail($id);
+    }
+
+    public function getAdmins(Request $request, $id) {
+        $admins = Server::find($id)->admins;
+        return response()->json($admins, 200);
     }
 
 
