@@ -13,6 +13,7 @@ class Server extends Model
         'name',
         'ip',
         'port',
+        'enabled'
     ];
 
     protected $hidden = [
@@ -20,6 +21,6 @@ class Server extends Model
     ];
 
     public function admins() {
-        return $this->hasMany('App\Models\Admin');
+        return $this->hasMany(Admin::class);
     }
 }

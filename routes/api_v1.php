@@ -32,6 +32,8 @@ Route::delete('/admins/{id}', [AdminsController::class, 'delete']);
 
 Route::get('/admins/{id}', [AdminsController::class, 'get']);
 
+Route::get('/admins/{id}/bans', [AdminsController::class, 'getBans']);
+
 
 // MARK: Admin Group
 
@@ -43,9 +45,7 @@ Route::get('/admingroup/{id}', [AdminGroupsController::class, 'get']);
 
 Route::get('/bans', [BansController::class, 'all']);
 
-Route::patch('/bans/{id}', function (Request $request) {
-    return 'should patch a ban: ';
-});
+Route::patch('/bans/{id}', [BansController::class, 'update']);
 
 Route::post('/bans', [BansController::class, 'all']);
 

@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Admin;
+use App\Models\Ban;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class AdminTableSeeder extends Seeder
+class BansTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,14 +15,18 @@ class AdminTableSeeder extends Seeder
      */
     public function run()
     {
-        Admin::truncate();
+        Ban::truncate();
 
         $faker = \Faker\Factory::create();
 
         for ($i = 0; $i < 5; $i++) {
-            Admin::create([
-                'steamid' => 'STEAM_0:0:0',
+            Ban::create([
+                'ip' => $faker->ipv4,
                 'name' => $faker->name,
+                'steam_id' => 'STEAM_0:0:0',
+                'reason' => $faker->sentence($nbWords = 6, $variableNbWords = true),
+                'length' => $faker->numberBetween($min = 1000, $max = 9000),
+                'admin_id' => ($i % 2) + 1
             ]);
         }
         //

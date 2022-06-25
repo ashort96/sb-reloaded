@@ -25,6 +25,10 @@ class BansController extends Controller
     public function get(Request $request, $id) {
         return Ban::findOrFail($id);
     }
+
+    public function update(Request $request) {
+        return 'should update ban';
+    }
     
     
 }

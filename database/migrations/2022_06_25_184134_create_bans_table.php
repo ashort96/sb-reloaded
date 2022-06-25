@@ -13,10 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('admins', function (Blueprint $table) {
+        Schema::create('bans', function (Blueprint $table) {
             $table->increments('id');
-            $table->char('steam_id', 17);
+            $table->string('ip');
             $table->string('name');
+            $table->string('steam_id');
+            $table->string('reason');
+            $table->integer('length');
+            $table->integer('admin_id')->unsigned();
+            $table->foreign('admin_id')->references('id')->on('admins');
             $table->timestamps();
         });
     }
@@ -28,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admins');
+        Schema::dropIfExists('bans');
     }
 };

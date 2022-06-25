@@ -9,7 +9,11 @@ class ServerGroup extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+      'name'  
+    ];
+
     public function servers() {
-        return $this->hasMany('App\Models\Server');
+        return $this->hasMany(Server::class);
     }
 }
