@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers\API\V1;
 
-use App\Models\Admin;
-use App\Models\Ban;
+use App\Models\{Admin, Ban};
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 

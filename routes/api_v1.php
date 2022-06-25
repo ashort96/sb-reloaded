@@ -1,12 +1,7 @@
 <?php
 
-use App\Models\Server;
-use App\Models\ServerGroup;
-use App\Http\Controllers\API\V1\AdminGroupsController;
-use App\Http\Controllers\API\V1\AdminsController;
-use App\Http\Controllers\API\V1\BansController;
-use App\Http\Controllers\API\V1\ServerGroupsController;
-use App\Http\Controllers\API\V1\ServersController;
+use App\Models\{Server, ServerGroup};
+use App\Http\Controllers\API\V1\{AdminGroupsController, AdminsController, BansController, ServerGroupsController, ServersController};
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
