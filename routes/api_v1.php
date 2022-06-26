@@ -17,6 +17,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// MARK: Health Check
+
+Route::get('/health', function (Request $request) {
+    return 'OK';
+});
+
 // MARK: Admin
 
 Route::get('/admins', [AdminsController::class, 'all']);
